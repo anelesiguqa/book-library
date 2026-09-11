@@ -59,10 +59,10 @@ app.get('/books/:id', (req, res) => {
 
 app.post('/books', (req, res) => {
   const id = books.length + 1
-  const title = req.body.title
-  const author = req.body.author
-  const status = req.body.status
-  const description = req.body.description
+  const title = req.body?.title
+  const author = req.body?.author
+  const status = req.body?.status
+  const description = req.body?.description
 
   if (title && author && status && description) {
     let book = {
@@ -84,7 +84,7 @@ app.post('/books', (req, res) => {
 
 app.patch('/books/:id', (req, res) => {
   const id = parseInt(req.params.id)
-  const status = req.body.status
+  const status = req.body?.status
 
   const book = books.find((book) => book.id === id)
   if (book && status) {
@@ -100,7 +100,6 @@ app.delete('/books/:id', (req, res) => {
   res.sendStatus(200)
 })
 
-app.get('/books?')
 app.listen(PORT, () => {
   console.log(`server listening on port ${PORT}`)
 })
